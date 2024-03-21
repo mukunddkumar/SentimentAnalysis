@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .review-heading {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .sentiment-heading {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .sentiment-text {
+            font-size: 24px;
+            color: #28a745; /* Green color for positive sentiment */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Result</h1>
+        <div class="review-heading">Review:</div>
+        <div class="review-text">{{ review }}</div>
+        <div class="sentiment-heading">Sentiment:</div>
+        <div class="sentiment-text">{{ sentiment }}</div>
+    </div>
+</body>
+</html>
