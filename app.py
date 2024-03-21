@@ -1,27 +1,28 @@
-from flask import Flask, render_template, request
+import streamlit as st
 import joblib
 import os
 
-# Initialize Flask app
-app = Flask(__name__)
+# Define Streamlit app
+def main():
+    st.title('Sentiment Analysis')
 
-# Define routes
-@app.route('/')
-def home():
-    return render_template('index.html')
+    # Home page
+    if st.sidebar.button('Home'):
+        st.write('Welcome to Sentiment Analysis!')
+        st.write('Please enter your review in the box below to predict sentiment.')
 
-@app.route('/predict', methods=['POST', 'GET'])
-def predict():
-    if request.method == 'POST':
-        review = request.form['review']
-        model_path = os.path.join(os.path.dirname(__file__), "Models", "naive_bayes.pkl")
-        rf_model = joblib.load(model_path)
-        prediction = rf_model.predict([review])[0]
-        if prediction == 1:
-            sentiment = 'Positive'
-        else:
-            sentiment = 'Negative'
-        return render_template('output.html', review=review, sentiment=sentiment)
+    # Prediction page
+    if st.sidebar.button('Predict Sentiment'):
+        st.subheader('Predict Sentiment')
+        review = st.text_area('Enter your review here:')
+        if st.button('Predict'):
+            model_path = os.path.join(os.path.dirname(__file__), "Models", "naive_bayes.pkl")
+            rf_model = joblib.load(model_path)
+            prediction = rf_model.predict([review])[0]
+            sentiment = 'Positive' if prediction == 1 else 'Negative'
+            st.write('Review:', review)
+            st.write('Sentiment:', sentiment)
 
+# Run the app
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0")
+    main()
